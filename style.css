@@ -1,0 +1,157 @@
+:root {
+    /* Updated Palette */
+    --field-night: #0F1A0F;      /* Deep black-green for headers/backgrounds */
+    --highlight-yellow: #D4AF37; /* Metallic Gold for logos/accents */
+    --dark-green: #1A3A1A;      /* Rich forest green for secondary sections */
+    --pigskin: #8B5A2B;         /* Football leather brown for buttons/action items */
+    --text-grey: #333;
+    --white: #ffffff;
+    --soft-cream: #fdfaf5;      /* Light background to complement the gold/brown */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    line-height: 1.6; 
+    color: var(--text-grey); 
+    background-color: var(--soft-cream); 
+}
+
+/* Navigation Bar */
+header { 
+    background: var(--field-night); 
+    padding: 1rem 0; 
+    border-bottom: 4px solid var(--highlight-yellow); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+}
+
+nav { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+}
+
+/* Logo Styling */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-logo {
+    height: 55px;
+    width: auto;
+    border-radius: 8px; /* Your rounded corners */
+    border: 1px solid var(--highlight-yellow); /* Slight gold border */
+}
+
+nav ul { display: flex; list-style: none; }
+nav ul li { margin-left: 25px; }
+nav ul li a { 
+    color: var(--white); 
+    text-decoration: none; 
+    font-weight: 600; 
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s; 
+}
+
+nav ul li a:hover { color: var(--highlight-yellow); }
+
+/* Layout Containers */
+.container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+
+h1, h2, h3 { color: var(--field-night); margin-bottom: 1.2rem; }
+h1 { border-left: 5px solid var(--pigskin); padding-left: 15px; }
+
+/* Sections & Boxes */
+.platform-box { 
+    background: var(--white); 
+    padding: 35px; 
+    border-radius: 12px; 
+    border-top: 5px solid var(--dark-green);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    margin-bottom: 40px; /* Space between boxes */
+}
+
+/* Article Previews */
+.article-preview-card { 
+    display: flex; 
+    background: var(--white); 
+    border: 1px solid #ddd; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    margin: 40px 0; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
+
+.preview-image { 
+    background: var(--field-night); 
+    color: var(--highlight-yellow);
+    width: 220px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 4.5rem; 
+}
+
+.preview-content { padding: 35px; flex: 1; }
+
+/* Research & Article Details */
+.full-article { 
+    background: var(--white); 
+    padding: 50px; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+.drawing-placeholder { 
+    background: #fcfcfc; 
+    border: 2px dashed var(--highlight-yellow); 
+    border-radius: 10px; 
+    padding: 50px; 
+    text-align: center; 
+    margin: 40px 0; 
+    color: var(--pigskin);
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 30px 0; background: var(--white); }
+th, td { border: 1px solid #eee; padding: 15px; text-align: left; }
+th { background-color: var(--dark-green); color: var(--white); font-weight: 600; }
+
+/* Buttons - Using the "Pigskin" Brown */
+.btn-action { 
+    background: var(--pigskin); 
+    color: var(--white); 
+    padding: 14px 28px; 
+    text-decoration: none; 
+    border-radius: 6px; 
+    font-weight: bold; 
+    display: inline-block;
+    border: none;
+    transition: transform 0.2s, background 0.3s;
+    cursor: pointer;
+}
+
+.btn-action:hover { 
+    background: #6d4622; /* Slightly darker pigskin */
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer { 
+    text-align: center; 
+    padding: 50px; 
+    background: var(--field-night); 
+    color: var(--highlight-yellow); 
+    margin-top: 80px; 
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cornerback Model | Research</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-link">
+                <img src="images/pvlogo.png" alt="Pigskin Vision Logo" class="nav-logo">
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="research.html">Research Papers</a></li>
+                <li><a href="video.html">Social Media</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="full-article">
+            <h1>Pigskin Vision: An Adaptive PCA Model for NFL Cornerback Evaluation</h1>
+            <p><strong>Abstract:</strong> A data-driven system for ranking NFL cornerbacks (2019–2025) using unsupervised Principal Component Analysis (PCA)[cite: 6, 8].</p>
+
+            <h2>1. Problem Definition</h2>
+            <p>Cornerback evaluation is difficult because elite performance is defined by "the absence of events"—passes not thrown[cite: 13, 14].</p>
+
+            <div class="drawing-placeholder"><strong>[IMAGE: THE TARGET GAP]</strong></div>
+
+            <h2>2. Data Selection</h2>
+            <p>Standard data only tags defenders on 10.2% of pass plays[cite: 29, 32]. This model utilizes PFR Advanced stats which tracks every targeted pass[cite: 33, 35].</p>
+
+            <table>
+                <tr><th>Player</th><th>PBP Targets</th><th>PFR Targets</th></tr>
+                <tr><td>Darius Slay</td><td>57</td><td>159 [cite: 37]</td></tr>
+                <tr><td>Jaire Alexander</td><td>42</td><td>145 [cite: 37]</td></tr>
+            </table>
+
+            <h2>3. Feature Engineering</h2>
+            <p>The model uses five per-target features[cite: 46]: Incompletion Rate, INT Rate, Passer Rating (Inv), Target Rate (Inv), and Yards Per Target (Inv).</p>
+
+            <h2>4. Qualification Filters</h2>
+            <p>Filtered to CBs with 40+ targets, 600+ snaps, and 13+ games to ensure statistical reliability[cite: 71, 74, 76, 80].</p>
+
+            <div class="drawing-placeholder"><strong>[IMAGE: WINSORIZATION SHIELD]</strong></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Pigskin Vision Analytics.</footer>
+</body>
+</html>
