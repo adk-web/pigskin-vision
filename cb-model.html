@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cornerback Model | Research</title>
+    <title>Cornerback Coverage Model | Pigskin Vision</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
                 <li><a href="research.html">Research Papers</a></li>
-                <li><a href="video.html">Social Media</a></li>
+                <li><a href="video.html">Video Channel</a></li>
             </ul>
         </nav>
     </header>
@@ -23,32 +23,180 @@
     <div class="container">
         <div class="full-article">
             <h1>Pigskin Vision: An Adaptive PCA Model for NFL Cornerback Evaluation</h1>
-            <p><strong>Abstract:</strong> A data-driven system for ranking NFL cornerbacks (2019–2025) using unsupervised Principal Component Analysis (PCA)[cite: 6, 8].</p>
+            <p style="color: #666; font-style: italic;">Complete Design Process | Seasons 2020 – 2024</p>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
 
-            <h2>1. Problem Definition</h2>
-            <p>Cornerback evaluation is difficult because elite performance is defined by "the absence of events"—passes not thrown[cite: 13, 14].</p>
+            <h2>Project Overview</h2>
+            <p>This document describes the complete design process for the Pigskin Vision Cornerback Coverage Model—a data-driven system for ranking NFL cornerbacks by season using publicly available statistics. The model takes a season year as input and returns a ranked list of qualified cornerbacks based on their coverage performance, with feature weightages that adapt automatically to the statistical trends of each individual season.</p>
+            <p>The final model covers seasons 2020 through 2024, requires no manual labels or human rankings, and uses Principal Component Analysis (PCA) to derive adaptive weightages from the data itself. It filters to CBs who played at least 13 games, 600 defensive snaps, and received at least 40 targets in a given season.</p>
 
-            <div class="drawing-placeholder"><strong>[IMAGE: THE TARGET GAP]</strong></div>
+            <h2>Phase 1: Problem Definition</h2>
+            <h3>Why Cornerbacks Are Hard to Rank</h3>
+            <p>The starting point of this project was recognizing that cornerback evaluation is uniquely difficult in the NFL. Unlike quarterbacks or running backs, great cornerbacks are often defined by what does not happen—passes that are never thrown, catches that are never made. The traditional box score offers almost nothing useful: interceptions are rare and often luck-dependent, tackles mean the receiver already caught the ball, and pass breakups are inconsistently tracked.</p>
+            <p>The core question driving the project was: <em>how often are CBs thrown at, and what happens when the ball comes their way?</em> This framing suggested a per-target rate approach—normalizing all outcomes by the number of times a CB was actually targeted, rather than by snaps or games played.</p>
 
-            <h2>2. Data Selection</h2>
-            <p>Standard data only tags defenders on 10.2% of pass plays[cite: 29, 32]. This model utilizes PFR Advanced stats which tracks every targeted pass[cite: 33, 35].</p>
+            <h2>Phase 2: Data Source Selection</h2>
+            <h3>The nflfastR Flaw</h3>
+            <p>The first data source considered was <code>nflfastR</code> play-by-play data. While this dataset tags defending players, a diagnostic check revealed a critical flaw: only 10.2% of regular-season pass plays had a defender tagged. The <code>pass_defense</code> columns are only populated when an official NFL statistic is credited to a defender—primarily pass breakups and interceptions—not on every coverage snap. This meant we were measuring impactful plays rather than true targets.</p>
+
+            <h3>PFR Advanced Defense Stats (Final Source)</h3>
+            <p>The final model utilizes Pro Football Reference (PFR) Advanced Defense Statistics. PFR uses a manual charting methodology that tracks every targeted pass by the intended coverage defender—not just plays with official NFL statistics. This is the gold standard for CB target data.</p>
 
             <table>
-                <tr><th>Player</th><th>PBP Targets</th><th>PFR Targets</th></tr>
-                <tr><td>Darius Slay</td><td>57</td><td>159 [cite: 37]</td></tr>
-                <tr><td>Jaire Alexander</td><td>42</td><td>145 [cite: 37]</td></tr>
+                <thead>
+                    <tr><th>Player</th><th>PBP Targets (nflfastR)</th><th>PFR True Targets</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Darius Slay</td><td>57</td><td>159</td></tr>
+                    <tr><td>Jaire Alexander</td><td>42</td><td>145</td></tr>
+                    <tr><td>Marshon Lattimore</td><td>47</td><td>146</td></tr>
+                </tbody>
             </table>
 
-            <h2>3. Feature Engineering</h2>
-            <p>The model uses five per-target features[cite: 46]: Incompletion Rate, INT Rate, Passer Rating (Inv), Target Rate (Inv), and Yards Per Target (Inv).</p>
+            <div class="drawing-placeholder">
+                <svg width="100%" viewBox="0 0 500 250" style="max-width: 500px; margin: 0 auto; display: block;">
+                    <text x="250" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#0F1A0F">Figure 1: The Missing Target Gap (Darius Slay)</text>
+                    <line x1="50" y1="200" x2="450" y2="200" stroke="#0F1A0F" stroke-width="2"/>
+                    <line x1="50" y1="200" x2="50" y2="40" stroke="#0F1A0F" stroke-width="2"/>
+                    <text x="30" y="120" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 30,120)">Total Targets</text>
+                    
+                    <rect x="120" y="160" width="60" height="40" fill="#666" />
+                    <text x="150" y="150" text-anchor="middle" font-size="14" fill="#666" font-weight="bold">57</text>
+                    <text x="150" y="220" text-anchor="middle" font-size="12" fill="#333">nflfastR (10%)</text>
+                    
+                    <rect x="320" y="50" width="60" height="150" fill="#1A3A1A" stroke="#D4AF37" stroke-width="2"/>
+                    <text x="350" y="40" text-anchor="middle" font-size="14" fill="#1A3A1A" font-weight="bold">159</text>
+                    <text x="350" y="220" text-anchor="middle" font-size="12" fill="#333">PFR True Targets</text>
+                </svg>
+            </div>
 
-            <h2>4. Qualification Filters</h2>
-            <p>Filtered to CBs with 40+ targets, 600+ snaps, and 13+ games to ensure statistical reliability[cite: 71, 74, 76, 80].</p>
+            <h2>Phase 3: Feature Engineering</h2>
+            <p>The model evaluates cornerbacks based on five core features, all computed as per-target rates to normalize for playing time and opportunity. All features are oriented so that higher values indicate better coverage quality:</p>
+            <ul>
+                <li><strong>Incompletion Rate:</strong> (targets - completions - INTs) / targets. Captures coverage success on challenge plays.</li>
+                <li><strong>Interception Rate:</strong> interceptions / targets. Captures ball-hawking ability.</li>
+                <li><strong>Passer Rating Allowed (Inv):</strong> 158.3 - avg_passer_rating_allowed. The most comprehensive efficiency metric.</li>
+                <li><strong>Target Rate (Inv):</strong> 1 - (targets / season_snaps). The "Reputation" metric—elite CBs are actively avoided by QBs.</li>
+                <li><strong>Yards Per Target (Inv/Winsorized):</strong> 1 / (winsorized_yds_per_tgt + 1). Measures yardage efficiency, adjusted to prevent extreme distortion.</li>
+            </ul>
 
-            <div class="drawing-placeholder"><strong>[IMAGE: WINSORIZATION SHIELD]</strong></div>
+            <div class="drawing-placeholder">
+                <svg width="100%" viewBox="0 0 500 350" style="max-width: 500px; margin: 0 auto; display: block;">
+                    <text x="250" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#0F1A0F">Figure 2: Player Identity Profile</text>
+                    
+                    <polygon points="250,60 370,140 330,260 170,260 130,140" fill="none" stroke="#ccc" stroke-dasharray="4"/>
+                    <polygon points="250,110 310,150 290,210 210,210 190,150" fill="none" stroke="#ccc" stroke-dasharray="4"/>
+                    
+                    <text x="250" y="50" text-anchor="middle" font-size="12" fill="#333">Target Rate (Inv)</text>
+                    <text x="380" y="145" text-anchor="start" font-size="12" fill="#333">Passer Rating (Inv)</text>
+                    <text x="340" y="275" text-anchor="middle" font-size="12" fill="#333">INT Rate</text>
+                    <text x="160" y="275" text-anchor="middle" font-size="12" fill="#333">Incomp. Rate</text>
+                    <text x="120" y="145" text-anchor="end" font-size="12" fill="#333">Yards/Tgt (Inv)</text>
+
+                    <polygon points="250,70 350,145 320,250 200,240 140,150" fill="rgba(26, 58, 26, 0.5)" stroke="#1A3A1A" stroke-width="2"/>
+                    
+                    <polygon points="250,130 330,150 310,190 190,255 150,140" fill="rgba(212, 175, 55, 0.4)" stroke="#D4AF37" stroke-width="2"/>
+
+                    <rect x="50" y="310" width="15" height="15" fill="rgba(26, 58, 26, 0.5)" stroke="#1A3A1A"/>
+                    <text x="75" y="322" font-size="12" fill="#333">Shutdown Corner</text>
+                    <rect x="250" y="310" width="15" height="15" fill="rgba(212, 175, 55, 0.4)" stroke="#D4AF37"/>
+                    <text x="275" y="322" font-size="12" fill="#333">Ballhawk Corner</text>
+                </svg>
+            </div>
+
+            <h2>Phase 4: Qualification Filters & Outlier Management</h2>
+            <p>To ensure the rankings were not skewed by small sample sizes, three strict filters were applied: 40+ Targets, 600+ Defensive Snaps, and 13+ Games Played. The games filter directly addresses injury-shortened outliers. For instance, Bryce Callahan (2020) was correctly excluded by this filter after posting elite stats in only 10 games.</p>
+            <p>Even with filters, extreme outliers exist. To solve this, continuous variables like "Yards Per Target" are winsorized at the 5th and 95th percentiles, capping statistical anomalies without removing the player entirely.</p>
+
+            <div class="drawing-placeholder">
+                <svg width="100%" viewBox="0 0 500 250" style="max-width: 500px; margin: 0 auto; display: block;">
+                    <text x="250" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#0F1A0F">Figure 3: Outlier Protection (Winsorization)</text>
+                    
+                    <line x1="50" y1="180" x2="450" y2="180" stroke="#0F1A0F" stroke-width="2"/>
+                    
+                    <path d="M50,180 Q250,10 450,180" fill="rgba(26, 58, 26, 0.1)" stroke="#1A3A1A" stroke-width="3"/>
+                    
+                    <line x1="120" y1="50" x2="120" y2="180" stroke="#D4AF37" stroke-width="4" stroke-dasharray="5"/>
+                    <text x="120" y="40" text-anchor="middle" font-size="12" fill="#D4AF37" font-weight="bold">5th %ile</text>
+                    
+                    <line x1="380" y1="50" x2="380" y2="180" stroke="#D4AF37" stroke-width="4" stroke-dasharray="5"/>
+                    <text x="380" y="40" text-anchor="middle" font-size="12" fill="#D4AF37" font-weight="bold">95th %ile</text>
+                    
+                    <circle cx="460" cy="175" r="6" fill="#8B5A2B" />
+                    <text x="460" y="200" text-anchor="middle" font-size="10" fill="#8B5A2B">Bryce Callahan (2020)</text>
+                    <path d="M450,175 L395,175" stroke="#8B5A2B" stroke-width="3" marker-end="url(#arrow)"/>
+                    
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B5A2B" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <h2>Phase 5: Model Architecture: The PCA Engine</h2>
+            <p>The project utilizes Principal Component Analysis (PCA)—an unsupervised machine learning algorithm. PCA finds the linear combination of features that explains the most variance in each individual season's data. </p>
+            <p>Features are standardized to zero mean and unit variance using the current season's data. This forces the PCA weightages to adapt to the statistical landscape of the league. In interception-heavy years, INT rate holds more weight; in low-turnover years, the weight drops automatically.</p>
+
+            <table>
+                <thead>
+                    <tr><th>Season</th><th>INT Rate Weight</th><th>Notable Context</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2021</td><td>17.2%</td><td>Trevon Diggs 11-INT season</td></tr>
+                    <tr><td>2022</td><td>8.0%</td><td>Low-INT season league-wide</td></tr>
+                    <tr><td>2024</td><td>18.4%</td><td>High-INT season overall</td></tr>
+                </tbody>
+            </table>
+
+            <div class="drawing-placeholder">
+                <svg width="100%" viewBox="0 0 500 250" style="max-width: 500px; margin: 0 auto; display: block;">
+                    <text x="250" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#0F1A0F">Figure 4: PCA Adaptive Weighting (INT Rate)</text>
+                    
+                    <line x1="50" y1="200" x2="450" y2="200" stroke="#0F1A0F" stroke-width="2"/>
+                    <line x1="50" y1="200" x2="50" y2="40" stroke="#0F1A0F" stroke-width="2"/>
+                    
+                    <text x="40" y="60" text-anchor="end" font-size="12" fill="#333">20%</text>
+                    <text x="40" y="130" text-anchor="end" font-size="12" fill="#333">10%</text>
+                    <text x="40" y="200" text-anchor="end" font-size="12" fill="#333">0%</text>
+                    
+                    <text x="100" y="220" text-anchor="middle" font-size="12" fill="#333">2021</text>
+                    <text x="200" y="220" text-anchor="middle" font-size="12" fill="#333">2022</text>
+                    <text x="300" y="220" text-anchor="middle" font-size="12" fill="#333">2023</text>
+                    <text x="400" y="220" text-anchor="middle" font-size="12" fill="#333">2024</text>
+
+                    <path d="M100,80 L200,160 L300,130 L400,60" fill="none" stroke="#D4AF37" stroke-width="4" />
+                    
+                    <circle cx="100" cy="80" r="6" fill="#1A3A1A"/>
+                    <text x="100" y="65" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A3A1A">17.2%</text>
+                    
+                    <circle cx="200" cy="160" r="6" fill="#1A3A1A"/>
+                    <text x="200" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A3A1A">8.0%</text>
+                    
+                    <circle cx="300" cy="130" r="6" fill="#1A3A1A"/>
+                    
+                    <circle cx="400" cy="60" r="6" fill="#1A3A1A"/>
+                    <text x="400" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A3A1A">18.4%</text>
+                </svg>
+            </div>
+
+            <h2>Phase 6: Validation & Key Results (2019-2025)</h2>
+            <p>The model’s output successfully tracks with elite historical performances and modern consensus without requiring manual human adjustment:</p>
+            <ul>
+                <li><strong>2019:</strong> Stephon Gilmore (#2) won DPOY; Tre'Davious White (#3) was statistically elite.</li>
+                <li><strong>2020:</strong> Xavien Howard (#1) led the NFL with 10 interceptions.</li>
+                <li><strong>2021:</strong> Jamel Dean (#1) posted an elite 4.8 yards per target. Trevon Diggs (#10) reflected high INTs offset by high yardage allowed.</li>
+                <li><strong>2024:</strong> The model is exceptionally strong here, with Derek Stingley Jr. (#1) and Patrick Surtain (#2) matching expert consensus perfectly.</li>
+                <li><strong>2025:</strong> Joey Porter Jr. (#1) and Quinyon Mitchell (#2) identified as early breakout stars under relaxed filters.</li>
+            </ul>
+
+            <h2>Conclusion & Known Limitations</h2>
+            <p>By utilizing per-target rates and era-adaptive PCA, the Pigskin Vision model provides a transparent, data-driven ranking system that bypasses the limitations of the traditional box score. The primary limitation remains the inability to measure <strong>separation prevention</strong> (preventing separation before the ball is thrown) or <strong>assignment difficulty</strong> (shadowing WR1s vs. covering a slot receiver). Addressing these would require proprietary tracking data like NFL Next Gen Stats.</p>
         </div>
     </div>
 
-    <footer>&copy; 2026 Pigskin Vision Analytics.</footer>
+    <footer>
+        &copy; 2026 Pigskin Vision.
+    </footer>
 </body>
 </html>
