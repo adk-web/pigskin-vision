@@ -11,7 +11,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-family: 'Bahnschrift', Tahoma, Geneva, Verdana, sans-serif; 
     line-height: 1.6; 
     color: var(--text-grey); 
     background-color: var(--soft-cream); 
@@ -154,4 +154,115 @@ footer {
     margin-top: 80px; 
     font-size: 0.85rem; 
     letter-spacing: 1px;
+}
+
+/* =========================================
+   CARD SECTION (Question → Conclusion)
+   ========================================= */
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin: 60px auto;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+/* CARD */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 260px;
+    width: 220px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: -1rem 0 2rem rgba(0,0,0,0.08);
+    transition: 0.4s ease-out;
+    position: relative;
+    padding: 20px;
+    border-top: 4px solid var(--dark-green);
+}
+
+/* STACK EFFECT */
+.card:not(:first-child) {
+    margin-left: -60px;
+}
+
+/* HOVER LIFT */
+.card:hover {
+    transform: translateY(-18px);
+}
+
+/* SHIFT NEIGHBORS */
+.card:hover ~ .card {
+    position: relative;
+    left: 50px;
+}
+
+/* TITLE */
+.card .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--field-night);
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.card .description {
+    font-size: 14px;
+    color: var(--text-grey);
+    line-height: 1.5;
+}
+
+/* PROGRESS BAR */
+.card .bar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    height: 5px;
+    width: 160px;
+}
+
+.card .emptybar {
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+}
+
+.card .filledbar {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--dark-green), var(--highlight-yellow));
+    transition: 0.5s ease-out;
+}
+
+/* FILL ANIMATION */
+.card:hover .filledbar {
+    width: 100%;
+}
+
+/* =========================================
+   OPTIONAL: MOBILE FIX
+   ========================================= */
+
+@media (max-width: 900px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        margin-left: 0 !important;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .card:hover ~ .card {
+        left: 0;
+    }
 }

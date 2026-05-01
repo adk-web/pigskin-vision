@@ -5,66 +5,123 @@
     <title>Pigskin Vision | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo-link">
-                <img src="images/pvlogo.png" alt="Pigskin Vision Logo" class="nav-logo">
-            </a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="research.html">Research Papers</a></li>
-                <li><a href="video.html">Social Media</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <div class="container">
-        <div class="hero">
-            <h1>Pigskin Vision</h1>
-            <p><strong>Teaching the next generation to watch football smarter.</strong></p>
-        </div>
+<header>
+    <nav>
+        <a href="index.html" class="logo-link">
+            <img src="images/pvlogo.png" alt="Pigskin Vision Logo" class="nav-logo">
+        </a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="research.html">Research Papers</a></li>
+            <li><a href="video.html">Social Media</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <h3>The website is a research-driven blog where each article tackles a specific analytical question about football.</h3>
+<main class="container">
 
-        <div class="platform-box">
-            <h2>Question</h2>
-            <p>A specific football debate or curiosity that people are aware about but have never considered examining deeper.</p>
-        </div>
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Pigskin Vision</h1>
+        <p><strong>Teaching the next generation to watch football smarter.</strong></p>
+    </section>
 
-        <div class="platform-box">
-            <h2>Method</h2>
-            <p>The datasets and variables that are relevant to answering this question.</p>
-        </div>
+    <h3>
+        A research-driven platform where each article answers a specific analytical question about football.
+    </h3>
 
-        <div class="platform-box">
-            <h2>Analysis</h2>
-            <p>The statistical methods and techniques used to analyze the data and answer the question.</p>
-        </div>
+    <!-- CARD OVERVIEW (REPLACES PLATFORM BOXES) -->
+    <section class="card-container">
 
-        <div class="platform-box">
-            <h2>Findings</h2>
-            <p>Interactive visuals showcasing the findings of the project in an appealing manner (animations, graphs, comparison charts).</p>
-        </div>
-
-        <div class="platform-box">
-            <h2>Conclusion</h2>
-            <p>What this project tells us about football, what this changes about our earlier perception of a specific topic, and what questions it opens up for future research.</p>
-        </div>
-
-        <h3>Featured Research</h3>
-        <div class="article-preview-card">
-            <div class="preview-image">📊</div>
-            <div class="preview-content">
-                <h2>Cornerback Coverage Model</h2>
-                <p>How do you rank players defined by what doesn't happen? This model uses unsupervised PCA to evaluate NFL cornerbacks from 2019–2025.</p>
-                <br>
-                <a href="cb-model.html" class="btn-action">Read Full Research Paper</a>
+        <div class="card">
+            <h3 class="title">Question</h3>
+            <p class="description">
+                What football debate or assumption can we test using data?
+            </p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
             </div>
         </div>
-    </div>
 
-    <footer>&copy; 2026 Pigskin Vision.</footer>
+        <div class="card">
+            <h3 class="title">Method</h3>
+            <p class="description">
+                Identify datasets and define the variables needed to measure performance.
+            </p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="title">Analysis</h3>
+            <p class="description">
+                Apply statistical models like PCA to extract meaningful patterns.
+            </p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="title">Findings</h3>
+            <p class="description">
+                Visualize results through charts, comparisons, and interactive graphics.
+            </p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="title">Conclusion</h3>
+            <p class="description">
+                Interpret what the results mean and how they change our understanding of the game.
+            </p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FEATURED RESEARCH -->
+    <section>
+        <h3>Featured Research</h3>
+
+        <div class="article-preview-card">
+            <div class="preview-image">📊</div>
+
+            <div class="preview-content">
+                <h2>Cornerback Coverage Model</h2>
+                <p>
+                    How do you rank players defined by what doesn't happen? This model uses
+                    unsupervised PCA to evaluate NFL cornerbacks from 2019–2025.
+                </p>
+
+                <br>
+
+                <a href="cb-model.html" class="btn-action">
+                    Read Full Research Paper
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2026 Pigskin Vision.
+</footer>
+
 </body>
 </html>
