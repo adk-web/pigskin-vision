@@ -246,7 +246,7 @@ footer {
 }
 
 /* =========================================
-   OPTIONAL: MOBILE FIX
+   MOBILE FIX
    ========================================= */
 
 @media (max-width: 900px) {
@@ -264,5 +264,45 @@ footer {
 
     .card:hover ~ .card {
         left: 0;
+    }
+}
+
+.spaced {
+    margin-bottom: 20px;
+}
+
+.spaced2 {
+    margin-top: 20px;
+}
+
+.about-profile {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+}
+
+.profile-photo {
+    margin-left: 100px;
+    width: 250px;
+    height: 250px;
+    object-fit: cover; /* Prevents stretching */
+    border-radius: 15%; /* Makes it a circle */
+    border: 4px solid var(--highlight-yellow); /* Uses your gold/yellow color */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 100px;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 600px) {
+    .about-profile {
+        flex-direction: column;
+        text-align: center;
     }
 }

@@ -24,20 +24,21 @@
 
     <div class="container">
         <article class="full-article">
-            <h1>Pigskin Vision: An Adaptive PCA Model for NFL Cornerback Evaluation</h1>
-            <p class="article-subtitle">Complete Design Process | Seasons 2019 – 2025</p>
+            <h1>Evaluating Cornerback Performance</h1>
+            <p class="article-subtitle">Complete Design Process | Seasons 2020 – 2024</p>
             <hr>
 
             <section>
-                <h2>Project Overview</h2>
-                <p>This document describes the complete design process for the Pigskin Vision Cornerback Coverage Model — a data-driven system for ranking NFL cornerbacks by season using publicly available statistics. The model takes a season year as input and returns a ranked list of qualified cornerbacks based on their coverage performance, with feature weightages that adapt automatically to the statistical trends of each individual season.</p>
-                <p>The final model covers seasons 2019 through 2025, requires no manual labels or human rankings, and uses Principal Component Analysis (PCA) to derive adaptive weightages from the data itself. It filters to CBs who played at least 13 games, 600 defensive snaps, and received at least 40 targets in a given season.</p>
+                <h2 class = "spaced2">Project Overview</h2>
+                <p>This article covers the design process for creating a model that evaluates cornerback performance. The model uses season-specific measurables, such as average interception rate, average passer rating, and more; and utilizes Principle Component Analysis (PCA) to create adaptive weightages using these measurables.</p>
+                <p class = "spaced">After filtering to cornerbacks that have played at least 13 games, 600 snaps, and have received at least 40 targets in a season, the model takes measurables for that season and returns a ranking of the best qualified cornerbacks from that season. The model was tested with seasons 2020 through 2024 and works effectively when tested on other seasons, such as 2019 and 2025.</p>
             </section>
 
             <section>
                 <h2>Phase 1: Problem Definition</h2>
-                <p>The starting point of this project was recognizing that cornerback evaluation is uniquely difficult in the NFL. Unlike quarterbacks or running backs, great cornerbacks are often defined by what does not happen — passes that are never thrown and catches that are never made. The traditional box score offers almost nothing useful: interceptions are rare and often luck-dependent, while tackles usually mean the receiver has already caught the ball.</p>
-                <p>The core question driving the project was: how often are CBs thrown at, and what happens when the ball comes their way? This framing immediately suggested a per-target rate approach — normalizing all outcomes by the number of times a CB was actually targeted, rather than by snaps or games played. This allows us to see who is truly efficient in coverage regardless of their team's defensive scheme.</p>
+                <p>Cornerbacks are notoriously difficult to evaluate and are considered very differently than other positions, like quarterback and running back. A cornerback's performance is determined by two things, how often they get the ball and what they do when they get the ball.</p>
+                <p>The problem with using cumulative statistics like interceptions and pass deflections is that cornerbacks often have little control over these stats. What I mean by this is that quarterbacks decide where the ball goes, and if they choose not to throw to a certain cornerback, that corner will not get any interceptions or pass deflections.</p>
+                <p>After this insight, I framed the question in a different manner. Now the goal of this model was to see how cornerbacks perform when the ball comes there way, suggesting a per-target rate approach. This allows us to see the best coverage cornerbacks, regardless of their target rate.</p>
                 <div class="chart-wrapper">
                     <canvas id="problemChart"></canvas>
                 </div>
@@ -45,9 +46,9 @@
 
             <section>
                 <h2>Phase 2: Data Source Selection</h2>
-                <p>The first data source considered was nflfastR play-by-play data. However, a diagnostic check revealed a critical flaw: only 10.2% of regular season pass plays had a defender tagged. The columns are only populated when an official statistic is credited, meaning we were measuring impactful plays rather than true coverage consistency.</p>
-                <p>The solution was Pro Football Reference (PFR) advanced defense statistics. PFR uses manual charting methodology that tracks every targeted pass by the intended coverage defender — not just plays with official NFL statistics. This provided the necessary granularity to see which defenders were being targeted and how they responded on every single play.</p>
-                
+                <p>A popular data source used by many football statisticians is nflfastR play-by-play data. The way that it works is for every pass play, the dataset tags the defending player via pass_defense_1_player_id and pass_defense_2_player_id columns. In theory, it would give us every target thrown at a CB on every play.</p>
+                <p>However, after significant testing with the data source, I found out that only 10.2% of regular season pass plays had a defender tagged; a defender is only tagged when an official NFL statistic is credited, like pass breakups and interceptions. This means we were once again measuring the number of impactful plays rather than the per-target rates.</p>
+                <p>The solution to this problem was using the PFR Advanced Defense Stats. Though nflfastR is a generally good data source, the PFR data source appealed to me because of its specificity on tracking defensive stats. PFR uses manual charting to track every targeted pass to a coverage defender, meaning that we had a way of looking at all targets now. This dataset contains targets, completions allowed, interceptions, touchdowns allowed, yards allowed, and passer rating allowed per player per season, making it perfect for the cornerback coverage model.</p>        
                 <div class="chart-wrapper">
                     <canvas id="dataSourceChart"></canvas>
                 </div>
@@ -55,8 +56,8 @@
 
             <section>
                 <h2>Phase 3: Feature Engineering</h2>
-                <p>All features in this model are computed as per-target rates rather than raw counts. This normalizes for playing time and opportunity. A CB who plays 800 snaps and allows 40 completions might look worse than one who plays 400 snaps and allows 30, but the per-target completion rate reveals who is actually the more effective lockdown defender.</p>
-                <p>The model utilizes five key features: Incompletion Rate, Interception Rate, Passer Rating Allowed (Inverted), Target Rate (Inverted), and Yards Per Target (Inverted). All features are oriented so that higher values represent better coverage performance, allowing the PCA to aggregate them into a single coherent score.</p>
+                <p>Now that we had the correct stats, the question arose regarding what per-target stats do we actually include? Additionally, how do we manipulate these stats to come up with a working model?</p>
+                <p>After significant testing with multiple combinations of features, I settled on the 5 features for this model: incompletion rate, interception rate, passer rating allowed (inverted), target rate (inverted), and yards per target (inverted and winsorized). Certain stats were inverted because, for example, a higher passer rating allowed signifies a worse cornerback and a lower passer rating allowed means a better cornerback. Yards per target was winsorized (split between 5th and 95th percentile) to prevent extreme outliers from distorting the model.</p>
                 
                 <div class="chart-wrapper">
                     <canvas id="featureChart"></canvas>
@@ -65,8 +66,8 @@
 
             <section>
                 <h2>Phase 4: Qualification Filters</h2>
-                <p>Three filters are applied to ensure rankings are based on meaningful samples: 40+ Targets, 600+ Defensive Snaps, and 13+ Games Played. Without these filters, a CB with only 5 targets could show a perfect 0.0 passer rating based purely on luck, which would unfairly place them at the top of the rankings over true starters.</p>
-                <p>The 13-game filter was added specifically to address injury-shortened seasons like Bryce Callahan's 2020 campaign. He played 10 games and posted the lowest yards per target in the dataset, which ranked him #1 before the filter was applied. By requiring 13 games, the model ensures it is ranking "full-season" performances that withstood the grind of an NFL schedule.</p>
+                <p>Before we use our model, we have to filter within the cornerbacks, to make sure that rankings are based on meaningful sample sizes and full-season performances. The filters chosen were 40 minimum targets, 600 minimum defensive snaps, and 13 minimum games played.</p>
+                <p>An interesting example that caused a lot of problems in my model was 2020 Bryce Callahan. For the 10 games he played that season, he allowed a very low yards per target rate and was consistently showing up at the top of the 2020 rankings. However, since he got injured, I realized it was unfair and not viable to have him as a qualified cornerback, resulting in the 13 game minimum for qualified cornerbacks.</p>
                 
                 <div class="chart-wrapper">
                     <canvas id="filterChart"></canvas>
@@ -75,18 +76,27 @@
 
             <section>
                 <h2>Phase 5: Model Architecture</h2>
-                <p>The project initially explored supervised machine learning, but this was abandoned because it inherited human bias from the "expert" labels used for training. Instead, Principal Component Analysis (PCA) was chosen. As an unsupervised algorithm, it finds the linear combination of features that explains the most variance in each season independently.</p>
-                <p>Because the model normalizes features within each season, the weightages adapt automatically. In high-turnover years, interceptions carry more weight; in low-turnover years, the model naturally shifts focus toward incompletion rates and yardage prevention. This makes the model era-adaptive and robust against changing NFL passing trends.</p>
+                <p>The first approach I attempted for this project was using LightGBM LambdaRank. The way this machine learning approach works is by manually assigning CB rankings and have the model create weightages for the features based on the rankings. After training this model on the 2020 to 2024 seasons, it worked pretty well, producing viable rankings for these seasons. However, since the weightages for the features were fixed, they did not translate well when testing with other seasons, such as the 2019 and 2025 seasons. This is because every season has relative "trends" which makes it difficult to apply a general weightage for every season.</p>
+                <div class="chart-wrapper">
+                    <canvas id="insightChart"></canvas>
+                </div>
+                <p>To fix this, I used Principle Component Analysis (PCA). This algorithm is unsupervised, meaning that it does not rely on given labels and instead finds the linear combination of weightages of features that explains the most variance in the data for each season independently. After normalizing the CB statistics, it is able to differentiate elite cornerbacks from average cornerbacks from worse-performing cornerbacks.</p>
+                <p>The way PCA works is by receiving a matrix of all features for all qualified CBs. It computes the first principal component, which is the direction in the feature space that captures the most variance between players. CBs are then given a score along this dimension which becomes their ranking score. Since all features are oriented so that higher values indicate better performance, the first principal component naturally aligns with overall coverage quality. A direction check is applied after each PCA run to ensure that components correlate correctly with elite cornerback performance.</p>
                 
                 <div class="chart-wrapper">
                     <canvas id="pcaChart"></canvas>
                 </div>
             </section>
 
+
             <section>
-                <h2>Phase 6: Validation and Results</h2>
-                <p>The model's results align closely with expert consensus and historical context. In 2019, Stephon Gilmore ranked #2 during his Defensive Player of the Year campaign. In 2024, the model successfully identified Derek Stingley Jr. and Patrick Surtain as the top two cornerbacks in the league, reflecting their elite statistical dominance.</p>
-                <p>Crucially, the model also correctly identifies "boom-or-bust" styles. For example, Trevon Diggs in 2021 ranked #10—a high mark, but one that accounts for the high yardage he allowed despite his league-leading 11 interceptions. This balance between big plays and consistent coverage is the hallmark of the PCA approach.</p>
+                <h2>Phase 6: Known Limitations</h2>
+                <p class = "spaced">Though this model effectively uses statistics to provide viable cornerback rankings, there are some known limitations that are outside the scope of this project. The model treats all targets equally regardless of who the CB was covering. Better pass rushes create shorter release times for quarterbacks, making coverage easier and increasing the risk for big plays like interceptions or pass deflections.</p>
+            </section>
+
+            <section>
+                <h2>Phase 7: Validation and Results</h2>
+                <p>The model's results align closely with expert consensus and historical context. In 2020, Xavien Howard was #1, after leading the NFL with 10 interceptions and Jaire Alexander follows close behind with an elite season as well. In 2021, Jamel Dean had 4.8 yards per target and a 58.5 passer rating allowed, making his season elite by per-target metrics. In this season, Trevon Diggs did have elite INT numbers, but he also had a high yards per target rate of 8.8, making his ranking #10. To see the full rankings, go to the pigskin vision GitHub repository for the csv rankings. </p>
                 
                 <div class="chart-wrapper">
                     <canvas id="resultsChart"></canvas>
@@ -95,11 +105,8 @@
 
             <section>
                 <h2>Conclusion</h2>
-                <p>The Pigskin Vision Cornerback Coverage Model successfully addresses the core challenge of CB evaluation: deriving meaningful performance rankings from statistics that only partially capture true coverage quality.</p>
-                <p>By combining per-target rate features with season-level normalization and unsupervised PCA, the model produces rankings that adapt to each season's statistical environment without requiring any manual configuration.</p>
-                <div class="chart-wrapper">
-                    <canvas id="insightChart"></canvas>
-                </div>
+                <p>This cornerback coverage model successfully addresses the core problem of CB evaluation: deriving meaningful performance rankings from a range of statistics. The model produces adaptive rankings based on the statistical environment of a season, without requiring any supervision. The model uses season-level normalization and unsupervised PCA to create expert-level rankings.</p>
+                <p class = "spaced">This model is especially reliable for recent years, as there is significantly more data on these seasons and statistical patterns are the most consistent as well. Though the model has limitations, it is a great stepping stone for future advancements in cornerback evaluation.</p>
             </section>
         </article>
     </div>
