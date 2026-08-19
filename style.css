@@ -462,3 +462,215 @@ footer {
     }
 
 }
+
+/* =========================================
+   LESSON ARTICLES
+   ========================================= */
+
+.lesson-article {
+    max-width: 760px;
+
+    margin: auto;
+
+    padding: 70px 25px 100px;
+}
+
+.lesson-article section {
+    margin-bottom: 75px;
+}
+
+.lesson-article h2 {
+    margin: 0 0 20px;
+
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.lesson-article p,
+.lesson-article li {
+    font-size: 1.05rem;
+}
+
+.lesson-article p {
+    color: #454b45;
+}
+
+.lesson-article ul {
+    padding-left: 25px;
+}
+
+
+/* EQUATIONS */
+
+.equation {
+    margin: 30px 0;
+    padding: 20px 25px;
+
+    border-left: 3px solid var(--gold);
+
+    background: white;
+
+    font-family: "Courier New", Courier, monospace;
+
+    font-size: 1.1rem;
+}
+
+
+/* VECTOR VISUAL */
+
+.vector-visual {
+    margin: 45px 0;
+}
+
+.vector-visual svg {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/* FIELD */
+
+.football-field {
+    fill: var(--green);
+
+    stroke: #0d160d;
+    stroke-width: 3;
+}
+
+.yard-line {
+    stroke: rgba(255, 255, 255, 0.35);
+
+    stroke-width: 2;
+}
+
+
+/* AXES */
+
+.axis-line {
+    stroke: var(--text);
+
+    stroke-width: 2;
+}
+
+.axis-text {
+    fill: var(--text);
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* PLAYERS */
+
+.player {
+    stroke: #0d160d;
+
+    stroke-width: 3;
+}
+
+.player-a {
+    fill: var(--gold);
+}
+
+.player-b {
+    fill: white;
+}
+
+.player-name {
+    fill: var(--text);
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.player-coordinate {
+    fill: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* VECTOR */
+
+.movement-vector {
+    stroke: var(--gold);
+
+    stroke-width: 5;
+}
+
+.arrow-head {
+    fill: var(--gold);
+}
+
+.vector-text {
+    fill: var(--gold);
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* CAPTION */
+
+.visual-caption {
+    margin-top: 12px !important;
+
+    color: var(--muted) !important;
+
+    font-size: 0.85rem !important;
+}
+
+
+/* QUESTIONS */
+
+.question-list {
+    margin: 30px 0;
+
+    padding: 20px 0;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.question-list p {
+    margin: 10px 0;
+
+    color: var(--text);
+
+    font-weight: bold;
+}
+
+
+/* NEXT LESSON */
+
+.next-lesson {
+    padding-top: 35px;
+
+    border-top: 2px solid var(--text);
+}
+
+.next-lesson h2 {
+    margin-top: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+    .lesson-article {
+        padding-top: 50px;
+        padding-bottom: 70px;
+    }
+
+    .lesson-article section {
+        margin-bottom: 55px;
+    }
+
+    .lesson-article h2 {
+        font-size: 1.65rem;
+    }
+
+}
