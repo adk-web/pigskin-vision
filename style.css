@@ -12,9 +12,7 @@
 }
 
 
-/* =========================
-   RESET
-   ========================= */
+/* RESET */
 
 * {
     box-sizing: border-box;
@@ -40,9 +38,7 @@ img {
 }
 
 
-/* =========================
-   NAVIGATION
-   ========================= */
+/* NAVIGATION */
 
 header {
     background: var(--green);
@@ -95,14 +91,12 @@ header {
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-links .active {
     color: var(--gold);
 }
 
 
-/* =========================
-   GENERAL
-   ========================= */
+/* GENERAL */
 
 .content,
 .content-section,
@@ -121,7 +115,7 @@ header {
 }
 
 .category {
-    margin: 0 0 8px;
+    margin-bottom: 8px;
 
     color: var(--brown);
 
@@ -138,9 +132,7 @@ header {
 }
 
 
-/* =========================
-   INTRO
-   ========================= */
+/* INTRO */
 
 .intro {
     padding: 110px 0;
@@ -180,15 +172,8 @@ header {
     text-decoration: none;
 }
 
-.main-link:hover,
-.light-link:hover {
-    text-decoration: underline;
-}
 
-
-/* =========================
-   SECTION TITLE
-   ========================= */
+/* SECTION TITLE */
 
 .section-title {
     margin-bottom: 30px;
@@ -214,9 +199,7 @@ header {
 }
 
 
-/* =========================
-   FEATURED ARTICLE
-   ========================= */
+/* FEATURED ARTICLE */
 
 .featured-story {
     display: grid;
@@ -251,9 +234,7 @@ header {
 }
 
 
-/* =========================
-   STORY LIST
-   ========================= */
+/* STORY LIST */
 
 .story-list {
     display: grid;
@@ -280,9 +261,7 @@ header {
 }
 
 
-/* =========================
-   EXPLORE FEATURE
-   ========================= */
+/* EXPLORE FEATURE */
 
 .explore-feature {
     padding: 80px 0;
@@ -304,31 +283,24 @@ header {
 }
 
 
-/* =========================
-   PAGE HEADER
-   ========================= */
+/* PAGE HEADER */
 
 .page-header {
     padding: 80px 0 55px;
 
-    background: var(--white);
+    background: white;
 
     border-bottom: 1px solid var(--border);
 }
 
 .page-header h1 {
-    max-width: 850px;
+    margin: 0 0 12px;
 
-    margin: 0 0 18px;
-
-    font-size: clamp(2.7rem, 6vw, 5rem);
-    line-height: 1.05;
+    font-size: clamp(3rem, 7vw, 5rem);
 }
 
-.page-header p:not(.category) {
-    max-width: 680px;
-
-    margin: 0;
+.page-header p {
+    max-width: 650px;
 
     color: var(--muted);
 
@@ -336,9 +308,7 @@ header {
 }
 
 
-/* =========================
-   LEARN
-   ========================= */
+/* LEARN */
 
 .article-row {
     padding: 40px 0;
@@ -360,7 +330,6 @@ header {
     margin: 0;
 
     font-size: 1.8rem;
-    line-height: 1.2;
 }
 
 .article-description p {
@@ -370,9 +339,7 @@ header {
 }
 
 
-/* =========================
-   TOOLS
-   ========================= */
+/* TOOLS */
 
 .tool-row {
     padding: 45px 0;
@@ -408,9 +375,7 @@ header {
 }
 
 
-/* =========================
-   ABOUT
-   ========================= */
+/* ABOUT */
 
 .about-article {
     max-width: 720px;
@@ -441,123 +406,64 @@ header {
 }
 
 
-/* =========================
-   LESSON ARTICLE
-   ========================= */
+/* VECTOR LESSON */
 
 .lesson-article {
-    max-width: 760px;
+    max-width: 700px;
 
     margin: auto;
-
-    padding: 70px 25px 100px;
-}
-
-.lesson-article section {
-    margin-bottom: 75px;
+    padding: 60px 25px 90px;
 }
 
 .lesson-article h2 {
-    margin: 0 0 20px;
+    margin-top: 50px;
 
-    font-size: 2rem;
-    line-height: 1.2;
-}
-
-.lesson-article p,
-.lesson-article li {
-    font-size: 1.05rem;
+    font-size: 1.8rem;
 }
 
 .lesson-article p {
     color: #454b45;
-}
 
-.lesson-article ul {
-    padding-left: 25px;
+    font-size: 1.05rem;
 }
 
 
 /* EQUATIONS */
 
 .equation {
-    margin: 30px 0;
-    padding: 22px 25px;
+    margin: 25px 0;
+    padding: 18px;
 
-    background: var(--white);
+    background: white;
 
-    border-left: 4px solid var(--gold);
+    border-left: 3px solid var(--gold);
 
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.05rem;
 }
 
 
-/* =========================
-   VECTOR VISUAL
-   ========================= */
+/* FOOTBALL FIELD VISUAL */
 
-.vector-visual {
-    margin: 45px 0;
+.field-visual {
+    margin: 40px 0;
 }
 
-.vector-visual svg {
-    display: block;
-
+.field-visual svg {
     width: 100%;
     height: auto;
+
+    display: block;
 }
-
-
-/* FOOTBALL FIELD */
 
 .football-field {
     fill: var(--green);
-
-    stroke: #0d160d;
-    stroke-width: 3;
-}
-
-.end-zone {
-    fill: rgba(200, 168, 75, 0.13);
 }
 
 .yard-line {
-    stroke: rgba(255, 255, 255, 0.35);
+    stroke: white;
 
-    stroke-width: 2;
-}
-
-.hash-mark {
-    stroke: rgba(255, 255, 255, 0.4);
-
-    stroke-width: 2;
-}
-
-
-/* SVG AXES */
-
-.axis-line {
-    stroke: var(--text);
-
-    stroke-width: 2;
-}
-
-.axis-text {
-    fill: var(--text);
-
-    font-size: 18px;
-    font-weight: bold;
-}
-
-
-/* SVG PLAYER POSITIONS */
-
-.position-point {
-    stroke: #0d160d;
-
-    stroke-width: 3;
+    opacity: 0.35;
 }
 
 .start-point {
@@ -565,94 +471,24 @@ header {
 }
 
 .end-point {
-    fill: var(--white);
+    fill: white;
 }
 
-.position-name {
+.movement-line {
+    stroke: var(--gold);
+
+    stroke-width: 4;
+}
+
+.field-label {
     fill: var(--text);
 
     font-size: 16px;
     font-weight: bold;
 }
 
-.position-coordinate {
-    fill: var(--muted);
 
-    font-size: 14px;
-}
-
-
-/* SVG VECTOR */
-
-.movement-vector {
-    stroke: var(--gold);
-
-    stroke-width: 5;
-}
-
-.arrow-head {
-    fill: var(--gold);
-}
-
-.vector-text {
-    fill: var(--gold);
-
-    font-size: 15px;
-    font-weight: bold;
-}
-
-
-/* VISUAL CAPTION */
-
-.visual-caption {
-    margin-top: 12px !important;
-
-    color: var(--muted) !important;
-
-    font-size: 0.85rem !important;
-}
-
-
-/* =========================
-   QUESTION LIST
-   ========================= */
-
-.question-list {
-    margin: 30px 0;
-
-    padding: 20px 0;
-
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.question-list p {
-    margin: 10px 0;
-
-    color: var(--text);
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   NEXT LESSON
-   ========================= */
-
-.next-lesson {
-    padding-top: 35px;
-
-    border-top: 2px solid var(--text);
-}
-
-.next-lesson h2 {
-    margin-top: 5px;
-}
-
-
-/* =========================
-   FOOTER
-   ========================= */
+/* FOOTER */
 
 footer {
     padding: 45px 0;
@@ -680,19 +516,13 @@ footer {
 }
 
 
-/* =========================
-   MOBILE
-   ========================= */
+/* MOBILE */
 
 @media (max-width: 750px) {
 
     .nav-container {
         flex-direction: column;
         gap: 12px;
-    }
-
-    .nav-links {
-        gap: 20px;
     }
 
     .featured-story,
@@ -713,28 +543,8 @@ footer {
         padding: 75px 0;
     }
 
-    .page-header {
-        padding: 55px 0 40px;
-    }
-
     .lesson-article {
-        padding-top: 50px;
-        padding-bottom: 70px;
+        padding-top: 40px;
     }
 
-    .lesson-article section {
-        margin-bottom: 55px;
-    }
-
-    .lesson-article h2 {
-        font-size: 1.65rem;
-    }
-
-    .equation {
-        padding: 18px 20px;
-
-        font-size: 1rem;
-
-        overflow-wrap: anywhere;
-    }
 }
