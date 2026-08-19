@@ -12,7 +12,9 @@
 }
 
 
-/* RESET */
+/* =========================
+   RESET
+   ========================= */
 
 * {
     box-sizing: border-box;
@@ -38,7 +40,9 @@ img {
 }
 
 
-/* NAVIGATION */
+/* =========================
+   NAVIGATION
+   ========================= */
 
 header {
     background: var(--green);
@@ -91,12 +95,14 @@ header {
 }
 
 .nav-links a:hover,
-.nav-links .active {
+.nav-links a.active {
     color: var(--gold);
 }
 
 
-/* GENERAL */
+/* =========================
+   GENERAL
+   ========================= */
 
 .content,
 .content-section,
@@ -115,7 +121,7 @@ header {
 }
 
 .category {
-    margin-bottom: 8px;
+    margin: 0 0 8px;
 
     color: var(--brown);
 
@@ -132,7 +138,9 @@ header {
 }
 
 
-/* INTRO */
+/* =========================
+   INTRO
+   ========================= */
 
 .intro {
     padding: 110px 0;
@@ -172,8 +180,15 @@ header {
     text-decoration: none;
 }
 
+.main-link:hover,
+.light-link:hover {
+    text-decoration: underline;
+}
 
-/* SECTION TITLE */
+
+/* =========================
+   SECTION TITLE
+   ========================= */
 
 .section-title {
     margin-bottom: 30px;
@@ -199,7 +214,9 @@ header {
 }
 
 
-/* FEATURED ARTICLE */
+/* =========================
+   FEATURED ARTICLE
+   ========================= */
 
 .featured-story {
     display: grid;
@@ -234,7 +251,9 @@ header {
 }
 
 
-/* STORY LIST */
+/* =========================
+   STORY LIST
+   ========================= */
 
 .story-list {
     display: grid;
@@ -261,7 +280,9 @@ header {
 }
 
 
-/* EXPLORE FEATURE */
+/* =========================
+   EXPLORE FEATURE
+   ========================= */
 
 .explore-feature {
     padding: 80px 0;
@@ -283,24 +304,31 @@ header {
 }
 
 
-/* PAGE HEADER */
+/* =========================
+   PAGE HEADER
+   ========================= */
 
 .page-header {
     padding: 80px 0 55px;
 
-    background: white;
+    background: var(--white);
 
     border-bottom: 1px solid var(--border);
 }
 
 .page-header h1 {
-    margin: 0 0 12px;
+    max-width: 850px;
 
-    font-size: clamp(3rem, 7vw, 5rem);
+    margin: 0 0 18px;
+
+    font-size: clamp(2.7rem, 6vw, 5rem);
+    line-height: 1.05;
 }
 
-.page-header p {
-    max-width: 650px;
+.page-header p:not(.category) {
+    max-width: 680px;
+
+    margin: 0;
 
     color: var(--muted);
 
@@ -308,7 +336,9 @@ header {
 }
 
 
-/* LEARN */
+/* =========================
+   LEARN
+   ========================= */
 
 .article-row {
     padding: 40px 0;
@@ -330,6 +360,7 @@ header {
     margin: 0;
 
     font-size: 1.8rem;
+    line-height: 1.2;
 }
 
 .article-description p {
@@ -339,7 +370,9 @@ header {
 }
 
 
-/* TOOLS */
+/* =========================
+   TOOLS
+   ========================= */
 
 .tool-row {
     padding: 45px 0;
@@ -375,7 +408,9 @@ header {
 }
 
 
-/* ABOUT */
+/* =========================
+   ABOUT
+   ========================= */
 
 .about-article {
     max-width: 720px;
@@ -406,66 +441,9 @@ header {
 }
 
 
-/* FOOTER */
-
-footer {
-    padding: 45px 0;
-
-    background: #0d160d;
-
-    color: #aeb5ae;
-}
-
-.footer-content {
-    max-width: 1000px;
-
-    margin: auto;
-    padding: 0 25px;
-}
-
-.footer-content strong {
-    color: white;
-}
-
-.footer-content p {
-    margin: 5px 0;
-
-    font-size: 0.85rem;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 750px) {
-
-    .nav-container {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .featured-story,
-    .article-row {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .story-list {
-        grid-template-columns: 1fr;
-    }
-
-    .featured-visual {
-        min-height: 240px;
-    }
-
-    .intro {
-        padding: 75px 0;
-    }
-
-}
-
-/* =========================================
-   LESSON ARTICLES
-   ========================================= */
+/* =========================
+   LESSON ARTICLE
+   ========================= */
 
 .lesson-article {
     max-width: 760px;
@@ -504,19 +482,21 @@ footer {
 
 .equation {
     margin: 30px 0;
-    padding: 20px 25px;
+    padding: 22px 25px;
 
-    border-left: 3px solid var(--gold);
+    background: var(--white);
 
-    background: white;
+    border-left: 4px solid var(--gold);
 
     font-family: "Courier New", Courier, monospace;
-
     font-size: 1.1rem;
+    font-weight: bold;
 }
 
 
-/* VECTOR VISUAL */
+/* =========================
+   VECTOR VISUAL
+   ========================= */
 
 .vector-visual {
     margin: 45px 0;
@@ -530,7 +510,7 @@ footer {
 }
 
 
-/* FIELD */
+/* FOOTBALL FIELD */
 
 .football-field {
     fill: var(--green);
@@ -539,14 +519,24 @@ footer {
     stroke-width: 3;
 }
 
+.end-zone {
+    fill: rgba(200, 168, 75, 0.13);
+}
+
 .yard-line {
     stroke: rgba(255, 255, 255, 0.35);
 
     stroke-width: 2;
 }
 
+.hash-mark {
+    stroke: rgba(255, 255, 255, 0.4);
 
-/* AXES */
+    stroke-width: 2;
+}
+
+
+/* SVG AXES */
 
 .axis-line {
     stroke: var(--text);
@@ -562,37 +552,37 @@ footer {
 }
 
 
-/* PLAYERS */
+/* SVG PLAYER POSITIONS */
 
-.player {
+.position-point {
     stroke: #0d160d;
 
     stroke-width: 3;
 }
 
-.player-a {
+.start-point {
     fill: var(--gold);
 }
 
-.player-b {
-    fill: white;
+.end-point {
+    fill: var(--white);
 }
 
-.player-name {
+.position-name {
     fill: var(--text);
 
     font-size: 16px;
     font-weight: bold;
 }
 
-.player-coordinate {
+.position-coordinate {
     fill: var(--muted);
 
     font-size: 14px;
 }
 
 
-/* VECTOR */
+/* SVG VECTOR */
 
 .movement-vector {
     stroke: var(--gold);
@@ -612,7 +602,7 @@ footer {
 }
 
 
-/* CAPTION */
+/* VISUAL CAPTION */
 
 .visual-caption {
     margin-top: 12px !important;
@@ -623,7 +613,9 @@ footer {
 }
 
 
-/* QUESTIONS */
+/* =========================
+   QUESTION LIST
+   ========================= */
 
 .question-list {
     margin: 30px 0;
@@ -643,7 +635,9 @@ footer {
 }
 
 
-/* NEXT LESSON */
+/* =========================
+   NEXT LESSON
+   ========================= */
 
 .next-lesson {
     padding-top: 35px;
@@ -656,9 +650,72 @@ footer {
 }
 
 
-/* MOBILE */
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    padding: 45px 0;
+
+    background: #0d160d;
+
+    color: #aeb5ae;
+}
+
+.footer-content {
+    max-width: 1000px;
+
+    margin: auto;
+    padding: 0 25px;
+}
+
+.footer-content strong {
+    color: white;
+}
+
+.footer-content p {
+    margin: 5px 0;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 750px) {
+
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .featured-story,
+    .article-row {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .story-list {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-visual {
+        min-height: 240px;
+    }
+
+    .intro {
+        padding: 75px 0;
+    }
+
+    .page-header {
+        padding: 55px 0 40px;
+    }
 
     .lesson-article {
         padding-top: 50px;
@@ -673,4 +730,11 @@ footer {
         font-size: 1.65rem;
     }
 
+    .equation {
+        padding: 18px 20px;
+
+        font-size: 1rem;
+
+        overflow-wrap: anywhere;
+    }
 }

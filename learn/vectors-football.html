@@ -1,48 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>How Can We Represent Football With Vectors? | Pigskin Vision</title>
+    <title>
+        How Can We Represent Football With Vectors? | Pigskin Vision
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css?v=4">
 </head>
+
 
 <body>
 
-    <!-- NAVIGATION -->
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
     <header>
+
         <div class="nav-container">
 
-            <a href="index.html" class="brand">
-                <img src="images/pvlogo.png" alt="Pigskin Vision logo">
+            <a href="./index.html" class="brand">
+
+                <img
+                    src="./images/pvlogo.png"
+                    alt="Pigskin Vision logo"
+                >
+
                 <span>Pigskin Vision</span>
+
             </a>
 
+
             <ul class="nav-links">
-                <li><a href="learn.html" class="active">Learn</a></li>
-                <li><a href="explore.html">Explore</a></li>
-                <li><a href="about.html">About</a></li>
+
+                <li>
+                    <a href="./learn.html" class="active">
+                        Learn
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./explore.html">
+                        Explore
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./about.html">
+                        About
+                    </a>
+                </li>
+
             </ul>
 
         </div>
+
     </header>
 
 
-    <!-- ARTICLE HEADER -->
+
+    <!-- =========================
+         ARTICLE HEADER
+         ========================= -->
+
     <section class="page-header">
 
         <div class="content">
 
-            <p class="category">Mathematics of Football</p>
+            <p class="category">
+                Mathematics of Football
+            </p>
 
-            <h1>How Can We Represent Football With Vectors?</h1>
+            <h1>
+                How Can We Represent Football With Vectors?
+            </h1>
 
             <p>
-                Before a computer can analyze a football play, we first have
-                to turn what happens on the field into numbers. Vectors give
-                us one of the simplest ways to do that.
+                Before a computer can analyze a football play,
+                we first have to turn what happens on the field
+                into numbers. Vectors give us one of the simplest
+                ways to do that.
             </p>
 
         </div>
@@ -50,18 +93,26 @@
     </section>
 
 
-    <!-- ARTICLE -->
+
+    <!-- =========================
+         ARTICLE
+         ========================= -->
+
     <main class="lesson-article">
 
+
         <!-- SECTION 1 -->
+
         <section>
 
-            <h2>Start With a Player's Position</h2>
+            <h2>
+                Start With a Player's Position
+            </h2>
 
             <p>
                 Imagine looking straight down at a football field.
-                Every player is standing somewhere along the length and
-                width of the field.
+                Every player is standing somewhere along the length
+                and width of the field.
             </p>
 
             <p>
@@ -69,22 +120,28 @@
                 For example:
             </p>
 
+
             <div class="equation">
                 p = [30, 20]
             </div>
 
+
             <p>
-                The first number can represent the player's position along
-                the length of the field, while the second represents the
-                player's position across the width.
+                The first number can represent the player's position
+                along the length of the field, while the second
+                represents the player's position across the width.
             </p>
 
             <p>
-                Together, these numbers form a <strong>vector</strong>.
+                Together, these numbers form a
+                <strong>vector</strong>.
             </p>
 
 
-            <!-- FOOTBALL FIELD VISUAL -->
+            <!-- =========================
+                 FOOTBALL FIELD VISUAL
+                 ========================= -->
+
             <div class="vector-visual">
 
                 <svg
@@ -94,17 +151,20 @@
                 >
 
                     <title id="field-title">
-                        Football players represented with coordinates
+                        A football player's movement represented
+                        using coordinates and a vector
                     </title>
 
                     <desc id="field-description">
-                        A football field showing Player A at 30,20 and
-                        Player B at 45,30, with an arrow showing the
-                        displacement between them.
+                        A football field showing a player beginning
+                        at coordinate 30,20 and ending at coordinate
+                        45,30. An arrow connects the two positions
+                        and represents displacement.
                     </desc>
 
 
                     <!-- FIELD -->
+
                     <rect
                         x="90"
                         y="40"
@@ -114,28 +174,140 @@
                     />
 
 
+                    <!-- END ZONES -->
+
+                    <rect
+                        x="90"
+                        y="40"
+                        width="55"
+                        height="320"
+                        class="end-zone"
+                    />
+
+                    <rect
+                        x="755"
+                        y="40"
+                        width="55"
+                        height="320"
+                        class="end-zone"
+                    />
+
+
                     <!-- YARD LINES -->
-                    <line x1="162" y1="40" x2="162" y2="360" class="yard-line" />
-                    <line x1="234" y1="40" x2="234" y2="360" class="yard-line" />
-                    <line x1="306" y1="40" x2="306" y2="360" class="yard-line" />
-                    <line x1="378" y1="40" x2="378" y2="360" class="yard-line" />
-                    <line x1="450" y1="40" x2="450" y2="360" class="yard-line" />
-                    <line x1="522" y1="40" x2="522" y2="360" class="yard-line" />
-                    <line x1="594" y1="40" x2="594" y2="360" class="yard-line" />
-                    <line x1="666" y1="40" x2="666" y2="360" class="yard-line" />
-                    <line x1="738" y1="40" x2="738" y2="360" class="yard-line" />
+
+                    <line
+                        x1="162"
+                        y1="40"
+                        x2="162"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="234"
+                        y1="40"
+                        x2="234"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="306"
+                        y1="40"
+                        x2="306"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="378"
+                        y1="40"
+                        x2="378"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="450"
+                        y1="40"
+                        x2="450"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="522"
+                        y1="40"
+                        x2="522"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="594"
+                        y1="40"
+                        x2="594"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="666"
+                        y1="40"
+                        x2="666"
+                        y2="360"
+                        class="yard-line"
+                    />
+
+                    <line
+                        x1="738"
+                        y1="40"
+                        x2="738"
+                        y2="360"
+                        class="yard-line"
+                    />
 
 
                     <!-- AXES -->
-                    <line x1="90" y1="385" x2="810" y2="385" class="axis-line" />
-                    <line x1="65" y1="360" x2="65" y2="40" class="axis-line" />
 
-                    <text x="818" y="392" class="axis-text">x</text>
-                    <text x="59" y="27" class="axis-text">y</text>
+                    <line
+                        x1="90"
+                        y1="390"
+                        x2="810"
+                        y2="390"
+                        class="axis-line"
+                    />
+
+                    <line
+                        x1="65"
+                        y1="360"
+                        x2="65"
+                        y2="40"
+                        class="axis-line"
+                    />
+
+
+                    <text
+                        x="820"
+                        y="396"
+                        class="axis-text"
+                    >
+                        x
+                    </text>
+
+                    <text
+                        x="58"
+                        y="28"
+                        class="axis-text"
+                    >
+                        y
+                    </text>
 
 
                     <!-- ARROWHEAD -->
+
                     <defs>
+
                         <marker
                             id="arrowhead"
                             markerWidth="10"
@@ -144,15 +316,19 @@
                             refY="3.5"
                             orient="auto"
                         >
+
                             <polygon
                                 points="0 0, 10 3.5, 0 7"
                                 class="arrow-head"
                             />
+
                         </marker>
+
                     </defs>
 
 
-                    <!-- MOVEMENT VECTOR -->
+                    <!-- DISPLACEMENT VECTOR -->
+
                     <line
                         x1="330"
                         y1="250"
@@ -163,50 +339,75 @@
                     />
 
 
-                    <!-- PLAYER A -->
+                    <!-- STARTING POSITION -->
+
                     <circle
                         cx="330"
                         cy="250"
                         r="14"
-                        class="player player-a"
+                        class="position-point start-point"
                     />
 
-                    <text x="290" y="286" class="player-name">
-                        Player A
+                    <text
+                        x="278"
+                        y="285"
+                        class="position-name"
+                    >
+                        Start
                     </text>
 
-                    <text x="294" y="307" class="player-coordinate">
+                    <text
+                        x="278"
+                        y="306"
+                        class="position-coordinate"
+                    >
                         (30, 20)
                     </text>
 
 
-                    <!-- PLAYER B -->
+                    <!-- ENDING POSITION -->
+
                     <circle
                         cx="510"
                         cy="160"
                         r="14"
-                        class="player player-b"
+                        class="position-point end-point"
                     />
 
-                    <text x="530" y="151" class="player-name">
-                        Player B
+                    <text
+                        x="530"
+                        y="150"
+                        class="position-name"
+                    >
+                        End
                     </text>
 
-                    <text x="530" y="173" class="player-coordinate">
+                    <text
+                        x="530"
+                        y="172"
+                        class="position-coordinate"
+                    >
                         (45, 30)
                     </text>
 
 
                     <!-- VECTOR LABEL -->
-                    <text x="385" y="185" class="vector-text">
+
+                    <text
+                        x="370"
+                        y="180"
+                        class="vector-text"
+                    >
                         displacement vector
                     </text>
 
                 </svg>
 
+
                 <p class="visual-caption">
-                    Player positions can be represented using coordinates.
-                    The arrow shows the change in position from Player A to Player B.
+                    A player's starting and ending positions can be
+                    represented with coordinates. The arrow represents
+                    the change in position.
                 </p>
 
             </div>
@@ -214,131 +415,165 @@
         </section>
 
 
+
         <!-- SECTION 2 -->
+
         <section>
 
-            <h2>Vectors Can Describe Movement</h2>
+            <h2>
+                Vectors Can Describe Movement
+            </h2>
 
             <p>
-                Suppose Player A begins at
+                Suppose a player begins at
                 <strong>(30, 20)</strong>
                 and later moves to
                 <strong>(45, 30)</strong>.
             </p>
 
             <p>
-                We can calculate the change in position by subtracting the
-                starting position from the ending position:
+                We calculate the change in position by subtracting
+                the starting position from the ending position:
             </p>
+
 
             <div class="equation">
                 [45, 30] − [30, 20] = [15, 10]
             </div>
 
+
             <p>
-                The vector <strong>[15, 10]</strong> describes how the
-                player's position changed.
+                The vector
+                <strong>[15, 10]</strong>
+                describes how the player's position changed.
             </p>
 
             <p>
-                This is a <strong>displacement vector</strong>.
+                This is called a
+                <strong>displacement vector</strong>.
             </p>
 
             <p>
-                Instead of only knowing where a player is, we can now begin
-                mathematically describing how that player moves.
+                Instead of only knowing where a player is,
+                we can now begin mathematically describing
+                how that player moves.
             </p>
 
         </section>
 
 
+
         <!-- SECTION 3 -->
+
         <section>
 
-            <h2>A Player Can Have More Than Two Features</h2>
+            <h2>
+                A Player Can Have More Than Two Features
+            </h2>
 
             <p>
-                Position is only the beginning. Modern football tracking data
-                can record several measurements about a player at once.
+                Position is only the beginning.
+                Modern football tracking data can record several
+                measurements about a player at once.
             </p>
 
             <p>
                 A simplified player vector might look like:
             </p>
 
+
             <div class="equation">
                 x = [position x, position y, speed, direction]
             </div>
+
 
             <p>
                 Instead of two numbers, we now have four.
             </p>
 
             <p>
-                We can think of this player as being represented in a
+                We can think of this player as being represented
+                in a
                 <strong>four-dimensional feature space</strong>.
             </p>
 
             <p>
-                A computer does not need to visualize four dimensions the
-                way we visualize a football field. It can still perform
-                mathematical operations on vectors containing many features.
+                A computer does not need to visualize four dimensions
+                the way we visualize a football field. It can still
+                perform mathematical operations on vectors containing
+                many features.
             </p>
 
         </section>
 
 
+
         <!-- SECTION 4 -->
+
         <section>
 
-            <h2>Does Every Feature Give Us New Information?</h2>
+            <h2>
+                Does Every Feature Give Us New Information?
+            </h2>
 
             <p>
-                Imagine that our player vector includes both:
+                Imagine that our player vector contains both:
             </p>
+
 
             <ul>
                 <li>speed in miles per hour</li>
                 <li>speed in kilometers per hour</li>
             </ul>
 
+
             <p>
-                These appear to be two different measurements, but one can
-                be calculated directly from the other:
+                These appear to be two different measurements,
+                but one can be calculated directly from the other:
             </p>
+
 
             <div class="equation">
                 speed<sub>km/h</sub> ≈ 1.609 × speed<sub>mph</sub>
             </div>
 
+
             <p>
-                That means the second feature does not give us a completely
-                new piece of information.
+                The second feature therefore does not provide a
+                completely new piece of information.
             </p>
 
             <p>
                 This connects to the idea of
-                <strong>linear dependence</strong>: some information in a
-                dataset may be mathematically redundant.
+                <strong>linear dependence</strong>:
+                some information in a dataset can be mathematically
+                redundant.
             </p>
 
         </section>
 
 
+
         <!-- SECTION 5 -->
+
         <section>
 
-            <h2>From Vectors to Football Analytics</h2>
+            <h2>
+                From Vectors to Football Analytics
+            </h2>
 
             <p>
-                Representing football with vectors gives us a mathematical
-                language for describing what happens on the field.
+                Representing football with vectors gives us a
+                mathematical language for describing what happens
+                on the field.
             </p>
 
             <p>
-                Once players and plays become numerical representations,
-                we can eventually ask questions such as:
+                Once players and plays become numerical
+                representations, we can eventually ask questions
+                such as:
             </p>
+
 
             <div class="question-list">
 
@@ -351,56 +586,74 @@
                 </p>
 
                 <p>
-                    Are there repeated patterns across thousands of plays?
+                    Are there repeated patterns across thousands
+                    of plays?
                 </p>
 
                 <p>
-                    Can complicated plays be represented using fewer
-                    meaningful dimensions?
+                    Can complicated plays be represented using
+                    fewer meaningful dimensions?
                 </p>
 
             </div>
 
+
             <p>
-                Those questions eventually lead into statistics and machine
-                learning. But the first step is simply learning how to turn
-                football into vectors.
+                Those questions eventually lead into statistics
+                and machine learning. But the first step is learning
+                how to turn football into vectors.
             </p>
 
         </section>
+
 
 
         <!-- NEXT LESSON -->
+
         <section class="next-lesson">
 
-            <p class="category">Up Next</p>
+            <p class="category">
+                Up Next
+            </p>
 
-            <h2>How Can We Measure Distance Between Football Players?</h2>
+            <h2>
+                How Can We Measure Distance Between Football Players?
+            </h2>
 
             <p>
-                Once positions are represented as vectors, we can measure
-                how far apart two players are.
+                Once positions are represented as vectors,
+                we can measure how far apart two players are.
             </p>
 
         </section>
+
 
     </main>
 
 
-    <!-- FOOTER -->
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer>
 
         <div class="footer-content">
 
-            <strong>Pigskin Vision</strong>
+            <strong>
+                Pigskin Vision
+            </strong>
 
             <p>
-                Learn football through mathematics, data, and machine learning.
+                Learn football through mathematics, data,
+                and machine learning.
             </p>
 
         </div>
 
     </footer>
 
+
 </body>
+
 </html>
